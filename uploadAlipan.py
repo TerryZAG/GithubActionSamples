@@ -3,7 +3,7 @@ import sys
 from aligo import Aligo
 
 
-def main(file_path):
+def main(refresh_token, file_path):
     ali = Aligo(refresh_token=refresh_token)
     ali.upload_folder(refresh_token, file_path)
 
