@@ -2,11 +2,16 @@ name: Pull_Zlm
 on: workflow_dispatch
 jobs:
   docker_pull:
-    name: 拉取镜像
+    name: 拉取镜像打包
     runs-on: ubuntu-latest
     
     steps:
-    - run: pwd
+    - uses: actions/checkout@V4
+    - run: pip install aligo
+    - run: mkdir dockerimages
+    - run: cd dockerimages
     - run: docker pull zlmediakit/zlmediakit:master
     - run: docker images
     - run: docker save -o zlmediakit.tar zlmediakit/zlmediakit:master
+    - run: cd ..
+    - run: python uploadAlipan.py 0f8ef3925e3c4215a3288f93eb406203 dockerimages
