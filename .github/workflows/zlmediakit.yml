@@ -13,5 +13,4 @@ jobs:
     - run: docker pull zlmediakit/zlmediakit:master
     - run: docker images
     - run: docker save -o zlmediakit.tar zlmediakit/zlmediakit:master
-    - run: folder_path=$(pwd)
-    - run: python uploadAlipan.py 0f8ef3925e3c4215a3288f93eb406203 $folder_path
+    - run: python uploadAlipan.py 0f8ef3925e3c4215a3288f93eb406203 $(pwd)
