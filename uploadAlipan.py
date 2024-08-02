@@ -3,12 +3,12 @@ import sys
 from aligo import Aligo
 
 
-def main(refresh_token, file_path):
+def main(refresh_token, folder_path):
     ali = Aligo(refresh_token=refresh_token)
-    ali.upload_folder(refresh_token, file_path)
+    ali.upload_folder(folder_path)
 
 
 if __name__ == '__main__':
     refresh_token=sys.argv[1]
-    file_path = sys.argv[2]
-    main(refresh_token, file_path)
+    folder_path = sys.argv[2]
+    main(refresh_token, folder_path)
