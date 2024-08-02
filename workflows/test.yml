@@ -1,7 +1,0 @@
-jobs:
-  example-job:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Pull Docker image
-      run: |
-        docker pull zlmediakit/zlmediakit:master
