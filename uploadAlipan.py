@@ -9,6 +9,6 @@ def main(refresh_token, folder_path):
 
 
 if __name__ == '__main__':
-    refresh_token=sys.argv[1]
+    refresh_token = sys.argv[1]
     folder_path = sys.argv[2]
     main(refresh_token, folder_path)
