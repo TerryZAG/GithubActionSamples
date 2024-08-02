@@ -1,14 +1,11 @@
 name: Pull_Zlm
 on: workflow_dispatch
 jobs:
-  example-job:
+  docker_pull:
+    name: 拉取镜像
     runs-on: ubuntu-latest
+    
     steps:
     - run: pwd
-    - run: ls
-
-  example-2job:
-    runs-on: ubuntu-latest
-    steps:
-    - run: pwd
-    - run: ls
+    - run: docker pull zlmediakit/zlmediakit:master
+    - run: docker save -o crop.tar zlmediakit:master
