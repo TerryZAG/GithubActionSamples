@@ -9,9 +9,9 @@ jobs:
     - uses: actions/checkout@v4
     - run: pip install aligo
     - run: mkdir dockerimages
-    - run: docker pull ${{ variables.DOCKER_IMAGE_NAME }}
+    - run: docker pull ${{ vars.DOCKER_IMAGE_NAME }}
     - run: docker images
-    - run: docker save -o docker_image.tar ${{ variables.DOCKER_IMAGE_NAME }}
+    - run: docker save -o docker_image.tar ${{ vars.DOCKER_IMAGE_NAME }}
     - run: mv docker_image.tar dockerimages/docker_image.tar
     - run: folder_path=$(pwd)/dockerimages
     - run: python uploadAlipan.py ${{ secrets.ALIYUNPAN_REFRESH_TOKEN }} $folder_path
