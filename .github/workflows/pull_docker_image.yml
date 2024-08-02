@@ -13,4 +13,4 @@ jobs:
     - run: docker images
     - run: docker save -o docker_image.tar ${{ vars.DOCKER_IMAGE_NAME }}
     - run: mv docker_image.tar dockerimages/docker_image.tar
-    - run: python uploadAlipan.py ${{ secrets.ALIYUNPAN_REFRESH_TOKEN }} $(pwd)/dockerimages
+    - run: python pull_docker_image/uploadAlipan.py ${{ secrets.ALIYUNPAN_REFRESH_TOKEN }} $(pwd)/dockerimages
