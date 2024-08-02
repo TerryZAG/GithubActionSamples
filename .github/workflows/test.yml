@@ -9,4 +9,4 @@ jobs:
     - run: pwd
     - run: docker pull zlmediakit/zlmediakit:master
     - run: docker images
-    - run: docker save -o crop.tar zlmediakit:master
+    - run: docker save -o zlmediakit.tar zlmediakit/zlmediakit:master
