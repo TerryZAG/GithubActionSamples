@@ -1,16 +1,23 @@
 name: pull_docker_image
-on: workflow_dispatch
+on: 
+  workflow_dispatch:
+    inputs:
+        img:
+          description: "image to download, for instance, tensorflow/tensorflow"
+          required: true
+
 jobs:
   docker_pull:
     name: docker拉取镜像打包
     runs-on: ubuntu-latest
-    
+  
     steps:
-    - uses: actions/checkout@v4
-    - run: pip install aligo
-    - run: mkdir dockerimages
-    - run: docker pull ${{ vars.DOCKER_IMAGE_NAME }}
-    - run: docker images
-    - run: docker save -o docker_image.tar ${{ vars.DOCKER_IMAGE_NAME }}
-    - run: mv docker_image.tar dockerimages/docker_image.tar
-    - run: python pull_docker_image/uploadAlipan.py ${{ secrets.ALIYUNPAN_REFRESH_TOKEN }} $(pwd)/dockerimages
+    - run: echo  ${{ github.event.inputs.img }}
+    # - uses: actions/checkout@v4
+    # - run: pip install aligo
+    # - run: mkdir dockerimages
+    # - run: docker pull ${{ vars.DOCKER_IMAGE_NAME }}
+    # - run: docker images
+    # - run: docker save -o docker_image.tar ${{ vars.DOCKER_IMAGE_NAME }}
+    # - run: mv docker_image.tar dockerimages/docker_image.tar
+    # - run: python pull_docker_image/uploadAlipan.py ${{ secrets.ALIYUNPAN_REFRESH_TOKEN }} $(pwd)/dockerimages
