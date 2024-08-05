@@ -13,15 +13,12 @@ jobs:
   
     steps:
     - uses: actions/checkout@v4
-    
-    - env:
-          IMG: ${{ github.event.inputs.img }}
-    - run: echo  ${{ IMG }}
+    - run: echo  ${{ github.event.inputs.img }}
     
     - run: pip install aligo
     - run: mkdir dockerimages
-    - run: docker pull ${{ IMG }}
+    - run: docker pull ${{ github.event.inputs.img }}
     - run: docker images
-    - run: docker save -o docker_image.tar ${{ IMG }}
+    - run: docker save -o docker_image.tar ${{ github.event.inputs.img }}
     - run: mv docker_image.tar dockerimages/docker_image.tar
     - run: python pull_docker_image/uploadAlipan.py ${{ secrets.ALIYUNPAN_REFRESH_TOKEN }} $(pwd)/dockerimages
