@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
         img:
-          description: "image to download, for instance, tensorflow/tensorflow"
+          description: "image to download, for instance, zlmediakit/zlmediakit:master"
           required: true
 
 jobs:
@@ -12,12 +12,16 @@ jobs:
     runs-on: ubuntu-latest
   
     steps:
-    - run: echo  ${{ github.event.inputs.img }}
-    # - uses: actions/checkout@v4
-    # - run: pip install aligo
-    # - run: mkdir dockerimages
-    # - run: docker pull ${{ vars.DOCKER_IMAGE_NAME }}
-    # - run: docker images
-    # - run: docker save -o docker_image.tar ${{ vars.DOCKER_IMAGE_NAME }}
-    # - run: mv docker_image.tar dockerimages/docker_image.tar
-    # - run: python pull_docker_image/uploadAlipan.py ${{ secrets.ALIYUNPAN_REFRESH_TOKEN }} $(pwd)/dockerimages
+    - uses: actions/checkout@v4
+    
+    - env:
+          IMG: ${{ github.event.inputs.img }}
+    - run: echo  ${{ IMG }}
+    
+    - run: pip install aligo
+    - run: mkdir dockerimages
+    - run: docker pull ${{ IMG }}
+    - run: docker images
+    - run: docker save -o docker_image.tar ${{ IMG }}
+    - run: mv docker_image.tar dockerimages/docker_image.tar
+    - run: python pull_docker_image/uploadAlipan.py ${{ secrets.ALIYUNPAN_REFRESH_TOKEN }} $(pwd)/dockerimages
